@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Custom Font Setup */
+        .font-serif-heading { font-family: 'Playfair Display', serif; }
+        .font-body { font-family: 'Inter', sans-serif; }
+        .font-handwriting { font-family: 'Pacifico', cursive; }
+
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Starry Background Animation */
+        .stars {
+            background: #0f172a;
+            overflow: hidden;
+            position: relative;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* 3D Flip Card */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* --- REDESIGNED ENVELOPE CSS --- */
+        .envelope-wrapper {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            cursor: pointer;
+            margin-top: 100px; /* Space for letter to pop up */
+        }
+        
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #f43f5e; /* rose-500 */
+            border-radius: 0 0 10px 10px;
+        }
+
+        .letter-content {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.6s ease-in-out 0.2s, z-index 0s linear 0.4s;
+            z-index: 1; /* Inside envelope initially */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fb7185; /* rose-400 */
+            /* This clip-path creates the V-cut pocket shape */
+            clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+            z-index: 10;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e11d48; /* rose-600 - darker for contrast */
+            /* Triangle flap shape */
+            clip-path: polygon(0 0, 100% 0, 50% 55%);
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.6s step-end;
+            z-index: 20; /* On top initially */
+        }
+
+        /* OPEN STATE ANIMATIONS */
+        .envelope-open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1; /* Moves behind everything */
+            background-color: #be123c; /* Darker when open/inside shadow */
+        }
+
+        .envelope-open .letter-content {
+            /* Slide up high above the envelope */
+            transform: translateY(-160px);
+            z-index: 15; /* Moves in front of pocket (visually) once high enough */
+            transition-delay: 0.4s; /* Wait for flap to open */
+        }
+        
+        /* Optional: Expand letter on click/read */
+        .envelope-open:hover .letter-content {
+             transform: translateY(-180px) scale(1.05);
+        }
+
+        /* Equalizer Bars */
+        .bar {
+            width: 4px;
+            background: #ec4899; /* pink-500 */
+            margin: 0 2px;
+            animation: equalize 1s infinite alternate;
+        }
+        .bar:nth-child(2) { animation-delay: 0.2s; }
+        .bar:nth-child(3) { animation-delay: 0.4s; }
+        .bar:nth-child(4) { animation-delay: 0.1s; }
+        .bar:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes equalize {
+            0% { height: 5px; }
+            100% { height: 20px; }
+        }
+
+        /* Custom Scrollbar for hidden feel */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Floating Cats Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-rose-50 text-slate-800 font-body antialiased overflow-x-hidden">
+
+    <!-- Screen 1: Hero Screen (Dark Starry Night) -->
+    <section id="hero" class="h-screen w-full stars flex flex-col items-center justify-center text-center px-6 relative z-10">
+        <!-- JS will populate stars here -->
+        <div class="z-20 animate-float mb-6">
+            <span class="text-6xl filter drop-shadow-lg">✨🐱❤️🐱✨</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-serif-heading text-rose-100 mb-4 z-20 drop-shadow-lg">Happy New Year,<br><span class="text-pink-400 italic">My Love!</span></h1>
+        <p class="text-rose-200 text-lg md:text-xl mb-12 z-20 font-light max-w-md">2026 is going to be our best chapter yet.</p>
+        
+        <button onclick="scrollToSection('greeting')" class="z-20 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-3 rounded-full hover:bg-white/20 transition-all flex items-center gap-2 animate-bounce">
+            Open your gift <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </button>
+    </section>
+
+    <!-- Screen 2: The Greeting Card -->
+    <section id="greeting" class="min-h-screen bg-rose-50 flex flex-col items-center justify-center p-6">
+        <h2 class="text-3xl font-serif-heading text-rose-900 mb-8">A Note for You</h2>
+        
+        <div class="perspective-1000 w-full max-w-sm h-96 cursor-pointer group" onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+            <div class="card-inner relative w-full h-full text-center transition-transform duration-700 transform-style-3d shadow-xl rounded-2xl">
+                
+                <!-- Front -->
+                <div class="absolute w-full h-full backface-hidden bg-white rounded-2xl p-8 flex flex-col items-center justify-center border-4 border-rose-200">
+                    <div class="text-6xl mb-4">😻</div>
+                    <h3 class="text-2xl font-serif-heading text-rose-800">To my favorite person...</h3>
+                    <p class="text-slate-500 mt-4 text-sm">(Tap to flip)</p>
+                </div>
+
+                <!-- Back -->
+                <div class="absolute w-full h-full backface-hidden bg-rose-100 rounded-2xl p-8 flex flex-col items-center justify-center rotate-y-180 border-4 border-rose-300">
+                    <i data-lucide="heart" class="text-rose-500 w-8 h-8 mb-4 fill-current"></i>
+                    <p class="font-handwriting text-2xl text-rose-800 leading-relaxed">
+                        "Thank you for making 2025 so special. Life is just better with you by my side."
+                    </p>
+                    <p class="font-handwriting text-lg text-rose-600 mt-2">- Hardik Rohit</p>
+                    <div class="mt-6 text-4xl">😽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen 3: Bucket List -->
+    <section class="min-h-screen bg-white flex flex-col items-center justify-center p-6 py-20">
+        <div class="max-w-md w-full">
+            <div class="text-center mb-10">
+                <span class="inline-block p-3 bg-blue-50 rounded-full text-blue-500 mb-4"><i data-lucide="list-checks"></i></span>
+                <h2 class="text-3xl font-serif-heading text-slate-800">Our 2026 Bucket List</h2>
+                <p class="text-slate-500 text-sm mt-2">Let's make these happen!</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Items -->
+                <div class="bucket-item p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4 cursor-pointer hover:bg-slate-50 transition-colors" onclick="toggleCheck(this)">
+                    <div class="checkbox w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="check" class="w-4 h-4 opacity-0 transition-opacity"></i>
+                    </div>
+                    <span class="text-lg text-slate-700 transition-all">Go on a stargazing date ✨</span>
+                </div>
+
+                <div class="bucket-item p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4 cursor-pointer hover:bg-slate-50 transition-colors" onclick="toggleCheck(this)">
+                    <div class="checkbox w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="check" class="w-4 h-4 opacity-0 transition-opacity"></i>
+                    </div>
+                    <span class="text-lg text-slate-700 transition-all">Cook a fancy dinner together 🍝</span>
+                </div>
+
+                <div class="bucket-item p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4 cursor-pointer hover:bg-slate-50 transition-colors" onclick="toggleCheck(this)">
+                    <div class="checkbox w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="check" class="w-4 h-4 opacity-0 transition-opacity"></i>
+                    </div>
+                    <span class="text-lg text-slate-700 transition-all">Weekend trip to somewhere new ✈️</span>
+                </div>
+
+                <div class="bucket-item p-4 rounded-xl border border-slate-100 shadow-sm flex items-center gap-4 cursor-pointer hover:bg-slate-50 transition-colors" onclick="toggleCheck(this)">
+                    <div class="checkbox w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white transition-colors">
+                        <i data-lucide="check" class="w-4 h-4 opacity-0 transition-opacity"></i>
+                    </div>
+                    <span class="text-lg text-slate-700 transition-all">Take more photos together 📸</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen 4: Music Player -->
+    <section class="min-h-screen bg-rose-50 flex flex-col items-center justify-center p-6 py-20">
+        <div class="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 border border-rose-100">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-serif-heading text-slate-800">Songs for You</h2>
+                <div class="flex items-end gap-1 h-5" id="global-equalizer">
+                    <div class="bar h-2 w-1 bg-rose-400"></div>
+                    <div class="bar h-3 w-1 bg-rose-400"></div>
+                    <div class="bar h-1 w-1 bg-rose-400"></div>
+                    <div class="bar h-4 w-1 bg-rose-400"></div>
+                </div>
+            </div>
+
+            <!-- Cassette Tapes -->
+            <div class="space-y-4">
+                <div onclick="playSong(this, 'Perfect - Ed Sheeran')" class="tape cursor-pointer group relative bg-slate-800 rounded-lg p-3 shadow-md hover:-translate-y-1 transition-transform">
+                    <div class="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="bg-amber-100 rounded px-3 py-2 flex items-center justify-between">
+                        <div class="text-xs font-bold text-slate-500 tracking-widest uppercase">Tape 01</div>
+                        <div class="text-sm font-handwriting text-slate-800">For when we dance</div>
+                    </div>
+                    <div class="flex justify-between items-center mt-3 px-2">
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50 group-active:opacity-100"></div>
+                        <div class="h-6 w-full mx-4 bg-slate-700 rounded-sm flex items-center justify-center overflow-hidden">
+                            <div class="w-full h-2 bg-black opacity-40"></div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50 group-active:opacity-100"></div>
+                    </div>
+                </div>
+
+                <div onclick="playSong(this, 'Lover - Taylor Swift')" class="tape cursor-pointer group relative bg-slate-800 rounded-lg p-3 shadow-md hover:-translate-y-1 transition-transform">
+                    <div class="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="bg-rose-100 rounded px-3 py-2 flex items-center justify-between">
+                        <div class="text-xs font-bold text-slate-500 tracking-widest uppercase">Tape 02</div>
+                        <div class="text-sm font-handwriting text-slate-800">For our vibe</div>
+                    </div>
+                    <div class="flex justify-between items-center mt-3 px-2">
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50"></div>
+                        <div class="h-6 w-full mx-4 bg-slate-700 rounded-sm flex items-center justify-center overflow-hidden">
+                            <div class="w-full h-2 bg-black opacity-40"></div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50"></div>
+                    </div>
+                </div>
+
+                <div onclick="playSong(this, 'Until I Found You')" class="tape cursor-pointer group relative bg-slate-800 rounded-lg p-3 shadow-md hover:-translate-y-1 transition-transform">
+                    <div class="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="bg-blue-100 rounded px-3 py-2 flex items-center justify-between">
+                        <div class="text-xs font-bold text-slate-500 tracking-widest uppercase">Tape 03</div>
+                        <div class="text-sm font-handwriting text-slate-800">My feelings 24/7</div>
+                    </div>
+                    <div class="flex justify-between items-center mt-3 px-2">
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50"></div>
+                        <div class="h-6 w-full mx-4 bg-slate-700 rounded-sm flex items-center justify-center overflow-hidden">
+                            <div class="w-full h-2 bg-black opacity-40"></div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-white border-4 border-slate-600 animate-spin-slow opacity-50"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Now Playing Indicator -->
+            <div id="now-playing" class="mt-6 text-center text-rose-500 font-serif-heading text-lg h-6 transition-opacity opacity-0">
+                Playing: <span id="song-name" class="font-bold">...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen 5: Love Vouchers -->
+    <section class="min-h-screen bg-rose-100 flex flex-col items-center justify-center p-6 py-20">
+        <h2 class="text-3xl font-serif-heading text-rose-900 mb-2">Love Coupons</h2>
+        <p class="text-rose-700 mb-10 text-sm">Tap to redeem anytime in 2026</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+            <!-- Coupon 1 -->
+            <div class="perspective-1000 h-48 cursor-pointer group" onclick="this.querySelector('.coupon-inner').classList.toggle('rotate-y-180')">
+                <div class="coupon-inner relative w-full h-full transition-transform duration-700 transform-style-3d">
+                    <div class="absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center border-2 border-dashed border-rose-300">
+                        <span class="text-4xl mb-2">🎁</span>
+                        <span class="font-serif-heading text-xl text-slate-700">Gift #1</span>
+                    </div>
+                    <div class="absolute w-full h-full backface-hidden bg-rose-500 rounded-xl shadow-lg flex flex-col items-center justify-center rotate-y-180 text-white p-4 text-center">
+                        <span class="text-3xl mb-2">🕯️</span>
+                        <span class="font-bold text-lg">Candlelit Dinner</span>
+                        <span class="text-xs opacity-80 mt-2">Just us two.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon 2 -->
+            <div class="perspective-1000 h-48 cursor-pointer group" onclick="this.querySelector('.coupon-inner').classList.toggle('rotate-y-180')">
+                <div class="coupon-inner relative w-full h-full transition-transform duration-700 transform-style-3d">
+                    <div class="absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center border-2 border-dashed border-rose-300">
+                        <span class="text-4xl mb-2">🎁</span>
+                        <span class="font-serif-heading text-xl text-slate-700">Gift #2</span>
+                    </div>
+                    <div class="absolute w-full h-full backface-hidden bg-rose-500 rounded-xl shadow-lg flex flex-col items-center justify-center rotate-y-180 text-white p-4 text-center">
+                        <span class="text-3xl mb-2">🧸</span>
+                        <span class="font-bold text-lg">Unlimited Cuddles</span>
+                        <span class="text-xs opacity-80 mt-2">No expiry date.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupon 3 -->
+            <div class="perspective-1000 h-48 cursor-pointer group" onclick="this.querySelector('.coupon-inner').classList.toggle('rotate-y-180')">
+                <div class="coupon-inner relative w-full h-full transition-transform duration-700 transform-style-3d">
+                    <div class="absolute w-full h-full backface-hidden bg-white rounded-xl shadow-lg flex flex-col items-center justify-center border-2 border-dashed border-rose-300">
+                        <span class="text-4xl mb-2">🎁</span>
+                        <span class="font-serif-heading text-xl text-slate-700">Gift #3</span>
+                    </div>
+                    <div class="absolute w-full h-full backface-hidden bg-rose-500 rounded-xl shadow-lg flex flex-col items-center justify-center rotate-y-180 text-white p-4 text-center">
+                        <span class="text-3xl mb-2">🛍️</span>
+                        <span class="font-bold text-lg">Shopping Spree</span>
+                        <span class="text-xs opacity-80 mt-2">My treat!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screen 6: Loader Transition -->
+    <section class="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-6 text-center text-white">
+        <div class="w-full max-w-xs">
+            <h2 class="text-xl font-light mb-6 opacity-90">Leaving 2025 behind...</h2>
+            
+            <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden mb-4">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-pink-500 to-rose-400 w-0 transition-all duration-1000 ease-out"></div>
+            </div>
+
+            <p class="text-sm text-slate-400 italic">Loading more memories for 2026...</p>
+        </div>
+    </section>
+
+    <!-- Screen 7: The Final Envelope -->
+    <section id="final" class="min-h-screen bg-rose-50 flex flex-col items-center justify-center p-6 relative overflow-hidden">
+        <!-- Floating hearts bg -->
+        <div class="absolute inset-0 pointer-events-none opacity-10">
+            <i data-lucide="heart" class="absolute top-10 left-10 w-12 h-12 text-red-500"></i>
+            <i data-lucide="heart" class="absolute bottom-20 right-20 w-16 h-16 text-red-500"></i>
+            <i data-lucide="heart" class="absolute top-1/2 left-4 w-8 h-8 text-red-500"></i>
+        </div>
+
+        <div class="text-center mb-10 z-10">
+            <h2 class="text-3xl font-serif-heading text-rose-900">One Last Thing...</h2>
+            <p class="text-slate-500 mt-2">Tap the envelope.</p>
+        </div>
+
+        <!-- NEW ENVELOPE STRUCTURE -->
+        <div class="envelope-wrapper" id="envelope" onclick="openEnvelope()">
+            <div class="envelope-back"></div>
+            
+            <div class="letter-content text-center">
+                <i data-lucide="heart" class="w-8 h-8 text-rose-400 mx-auto mb-2"></i>
+                <p class="font-handwriting text-lg text-rose-800 leading-snug">
+                    Happy New Year! I promise to be there for the highs and lows. I love you more than words can say. Let's crush 2026 together. ❤️
+                    <br><span class="block mt-2 font-bold">- Hardik Rohit</span>
+                </p>
+            </div>
+            
+            <div class="envelope-pocket"></div>
+            <div class="envelope-flap"></div>
+        </div>
+        
+        <div class="mt-24 text-slate-400 text-sm">Made with love by Hardik Rohit</div>
+    </section>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Generate Stars for Hero Section
+        const heroSection = document.getElementById('hero');
+        for(let i=0; i<50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            heroSection.prepend(star);
+        }
+
+        // 2. Smooth Scroll Function
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 3. Bucket List Interaction
+        function toggleCheck(element) {
+            const checkbox = element.querySelector('.checkbox');
+            const icon = element.querySelector('i');
+            const text = element.querySelector('span');
+
+            if (checkbox.classList.contains('bg-blue-500')) {
+                // Uncheck
+                checkbox.classList.remove('bg-blue-500', 'border-blue-500');
+                checkbox.classList.add('border-slate-300');
+                icon.classList.remove('opacity-100');
+                icon.classList.add('opacity-0');
+                text.classList.remove('line-through', 'text-slate-400');
+                text.classList.add('text-slate-700');
+            } else {
+                // Check
+                checkbox.classList.add('bg-blue-500', 'border-blue-500');
+                checkbox.classList.remove('border-slate-300');
+                icon.classList.remove('opacity-0');
+                icon.classList.add('opacity-100');
+                text.classList.add('line-through', 'text-slate-400');
+                text.classList.remove('text-slate-700');
+            }
+        }
+
+        // 4. Music Player Logic
+        function playSong(element, songName) {
+            // Reset all tapes visuals
+            document.querySelectorAll('.tape').forEach(tape => {
+                tape.classList.remove('ring-2', 'ring-rose-400', 'scale-95');
+                const spinners = tape.querySelectorAll('.rounded-full'); // cassette wheels
+                spinners.forEach(s => s.classList.remove('animate-spin'));
+            });
+
+            // Activate clicked tape
+            element.classList.add('ring-2', 'ring-rose-400', 'scale-95');
+            const spinners = element.querySelectorAll('.rounded-full');
+            spinners.forEach(s => s.classList.add('animate-spin'));
+
+            // Show Now Playing
+            const np = document.getElementById('now-playing');
+            const nameSpan = document.getElementById('song-name');
+            np.classList.remove('opacity-0');
+            nameSpan.innerText = songName;
+        }
+
+        // Custom Spin Animation for Cassette
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            .animate-spin { animation: spin 2s linear infinite; }
+            .animate-spin-slow { animation: spin 4s linear infinite; }
+        `;
+        document.head.appendChild(styleSheet);
+
+        // 5. Progress Bar Animation on Scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    document.getElementById('progress-bar').style.width = '100%';
+                }
+            });
+        });
+        observer.observe(document.getElementById('progress-bar'));
+
+        // 6. Envelope Interaction
+        function openEnvelope() {
+            const envelope = document.getElementById('envelope');
+            if(!envelope.classList.contains('envelope-open')) {
+                envelope.classList.add('envelope-open');
+                
+                // Add confetti effect around envelope
+                createConfetti(envelope.getBoundingClientRect());
+            } else {
+                // Optional: click to close back?
+                // envelope.classList.remove('envelope-open');
+            }
+        }
+
+        // Simple Confetti burst using DOM elements
+        function createConfetti(rect) {
+            const colors = ['#ec4899', '#f43f5e', '#ffffff', '#fbbf24'];
+            for(let i=0; i<30; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'absolute';
+                conf.style.width = '8px';
+                conf.style.height = '8px';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.left = (rect.left + rect.width/2) + 'px';
+                conf.style.top = (rect.top + rect.height/2) + 'px';
+                conf.style.zIndex = '50';
+                document.body.appendChild(conf);
+
+                // Animate
+                const x = (Math.random() - 0.5) * 200;
+                const y = (Math.random() - 0.5) * 200 - 50;
+                
+                conf.animate([
+                    { transform: `translate(0,0) scale(1)`, opacity: 1 },
+                    { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'ease-out'
+                }).onfinish = () => conf.remove();
+            }
+        }
+
+    </script>
+</body>
+</html>
